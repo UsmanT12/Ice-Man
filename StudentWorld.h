@@ -17,7 +17,9 @@ public:
 
 	virtual int init()
 	{
-        Iceman(30, 60);
+        //TODO: create a Iceman intilization
+        Iceman player(0, 30, 60);
+        player.setVisible(true);
 		return GWSTATUS_CONTINUE_GAME;
 	}
 

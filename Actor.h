@@ -16,7 +16,7 @@ class Iceman : public GraphObject {
 private:
     int x;
     int y;
-    std::string ID;
+    int ID;
     
     int health;
     int sonars;
@@ -25,18 +25,17 @@ private:
     int water;
     
 public:
-    //initializes player to 100 health and sets all goodies to 0
-    Iceman(int startX, int startY) {
+    //initializes player to 10 health and sets all goodies
+    //TODO: fix Iceman constructor so that it can be called in StudentWorld
+    //Iceman(int imageID, int startX, int startY, d, size, depth) : GraphObject(imageID, startX, startY, Direction d, double size, int depth) {
+    Iceman(int imageID, int startX, int startY) : GraphObject(imageID, startX, startY) {
         health = 10;
-        sonars = 0;
-        squirts = 0;
+        sonars = 1;
+        squirts = 5;
         nuggets = 0;
-        water = 0;
+        ID = 0;
         
-        x = startX;
-        y = startY;
-        
-        ID = "IID_PLAYER";
+        setdepth();
     }
     
     int get_x () {
@@ -47,7 +46,7 @@ public:
         return y;
     }
     
-    std::string get_ID() {
+    int get_ID() {
         return ID;
     }
 
