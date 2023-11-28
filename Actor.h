@@ -19,7 +19,7 @@ public:
     
 private:
     bool alive;
-    
+    StudentWorld* world;
 };
 
 class Goodies : public Actor {
