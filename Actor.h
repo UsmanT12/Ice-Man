@@ -4,32 +4,6 @@
 #include "GraphObject.h"
 class StudentWorld;
 
-
-//Used to access student world from the actors
-//class Actor : public GraphObject {
-//public:
-//    //functions all classes will use
-//    Actor(int imageID, int startX, int startY, StudentWorld* sw, Direction startDirection, double size, unsigned int depth) : GraphObject(imageID, startX, startY, startDirection, size, depth)
-//    {
-//        world = sw;
-//        lives = 1;
-//    }
-//    
-//    int get_lives() {
-//        return lives;
-//    }
-//    
-//    StudentWorld* get_world() 
-//    { 
-//        return world;
-//    }
-//    
-//private:
-//    int lives;
-//    int health;
-//    StudentWorld* world;
-//};
-
 class Actor : public GraphObject{
     
 public:
