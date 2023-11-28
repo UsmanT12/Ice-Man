@@ -2,40 +2,86 @@
 #define ACTOR_H_
 
 #include "GraphObject.h"
+class StudentWorld;
 
 
+//Used to access student world from the actors
+//class Actor : public GraphObject {
+//public:
+//    //functions all classes will use
+//    Actor(int imageID, int startX, int startY, StudentWorld* sw, Direction startDirection, double size, unsigned int depth) : GraphObject(imageID, startX, startY, startDirection, size, depth)
+//    {
+//        world = sw;
+//        lives = 1;
+//    }
+//    
+//    int get_lives() {
+//        return lives;
+//    }
+//    
+//    StudentWorld* get_world() 
+//    { 
+//        return world;
+//    }
+//    
+//private:
+//    int lives;
+//    int health;
+//    StudentWorld* world;
+//};
 
-class Goodies : public GraphObject {
+class Actor : public GraphObject{
+    
+public:
+    Actor(int imageID, int startX, int startY, Direction dir, double size, int depth) : GraphObject(imageID, startX, startY, dir, size, depth) {
+        alive = true;
+    }
+    virtual  void dosomething() { }
+    virtual void annoyed() { }
+    virtual bool isalive() { return alive; }
+    virtual void set_alive(bool status) { alive = status; }
+    
+    virtual ~Actor() { alive = false; }
+    
+private:
+    bool alive;
+    
+};
+
+class Goodies : public Actor {
 private:
     
 public:
     
 };
 
-class Iceman : public GraphObject {
+class Iceman : public Actor{
 private:
+    int sonars;
+    int nuggets;
+    int water;
     int x;
     int y;
     int ID;
-    
-    int health;
-    int sonars;
-    int squirts;
-    int nuggets;
-    int water;
     
 public:
     //initializes player to 10 health and sets all goodies
     //TODO: fix Iceman constructor so that it can be called in StudentWorld
     //Iceman(int imageID, int startX, int startY, d, size, depth) : GraphObject(imageID, startX, startY, Direction d, double size, int depth) {
-    Iceman(int imageID, int startX, int startY) : GraphObject(imageID, startX, startY) {
-        health = 10;
+    Iceman(int imageID, int startX, int startY, StudentWorld* sw) : Actor(imageID, startX, startY, right, 1.0, 0) {
+        //health = 10;
         sonars = 1;
-        squirts = 5;
+        water = 5;
         nuggets = 0;
-        ID = 0;
         
-        setdepth();
+        x  = startX;
+        y = startY;
+    }
+    
+    ~Iceman () { }
+    
+    void dosomething() {
+        
     }
     
     int get_x () {
@@ -56,21 +102,31 @@ public:
     
 };
 
-class Ice  : public GraphObject {
+class Ice  : public Actor {
+private:
+    int x;
+    int y;
+    int ID;
+    
+public:
+    Ice(int imageID, int startX, int startY, StudentWorld* sw) : Actor(imageID, startX, startY, right, .25, 3) {
+        x = startX;
+        y = startY;
+        ID = imageID;
+    }
+    
+    ~Ice() { }
+    
+};
+
+class Boulders : public Actor {
 private:
     
 public:
     
 };
 
-class Boulders : public GraphObject {
-private:
-    
-public:
-    
-};
-
-class Squirt : public GraphObject {
+class Squirt : public Actor {
 private:
     
 public:
@@ -105,14 +161,14 @@ public:
     
 };
 
-class Regular_protesters : public GraphObject {
+class Protestor : public Actor {
 private:
     
 public:
     
 };
 
-class Hardcore_protesters : public GraphObject {
+class Hardcore_protesters : public Protestor {
 private:
     
 public:
