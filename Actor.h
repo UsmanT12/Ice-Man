@@ -2,10 +2,10 @@
 #define ACTOR_H_
 
 #include "GraphObject.h"
+
 #include <cmath>
 
 class StudentWorld;
-//class GameController;
 
 class Actor : public GraphObject{
 
